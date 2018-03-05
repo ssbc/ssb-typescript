@@ -6,10 +6,12 @@
     "type": "git",
     "url": "git+https://github.com/ssbc/ssb-typescript.git"
   },
-  "types": "readme.d.ts",
+  "types": "readme.ts",
   "author": "staltz.com",
   "license": "MIT",
-  "keywords": ["ssb"],
+  "keywords": [
+    "ssb"
+  ],
   "devDependencies": {
     "ts-node": "^4.1.0",
     "typescript": "^2.6.2"
