@@ -1,0 +1,17 @@
+{
+  "name": "ssb-typescript",
+  "version": "1.0.0",
+  "description": "TypeScript type definitions for Secure Scuttlebutt",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssbc/ssb-typescript.git"
+  },
+  "types": "readme.d.ts",
+  "author": "staltz.com",
+  "license": "MIT",
+  "keywords": ["ssb"],
+  "devDependencies": {
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
+  }
+}
