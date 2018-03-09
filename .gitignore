@@ -1,2 +1,8 @@
 node_modules
 .DS_Store
+/readme.js
+/readme.d.ts
+/readme.js.map
+/utils.js
+/utils.d.ts
+/utils.js.map

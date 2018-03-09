@@ -12,6 +12,9 @@
   "keywords": [
     "ssb"
   ],
+  "scripts": {
+    "prepublish": "tsc"
+  },
   "devDependencies": {
     "ts-node": "^4.1.0",
     "typescript": "^2.6.2"
