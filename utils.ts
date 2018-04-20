@@ -19,7 +19,7 @@ export function isPostMsg(msg: Msg<any>): msg is Msg<PostContent> {
 }
 
 export function isRootPostMsg(msg: Msg<any>): msg is Msg<PostContent> {
-  return isPostMsg(msg) && !!msg.value.content.root;
+  return isPostMsg(msg) && !msg.value.content.root;
 }
 
 export function isAboutMsg(msg: Msg<any>): msg is Msg<AboutContent> {
