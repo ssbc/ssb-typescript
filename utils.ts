@@ -22,6 +22,10 @@ export function isRootPostMsg(msg: Msg<any>): msg is Msg<PostContent> {
   return isPostMsg(msg) && !msg.value.content.root;
 }
 
+export function isReplyPostMsg(msg: Msg<any>): msg is Msg<PostContent> {
+  return isPostMsg(msg) && !!msg.value.content.root;
+}
+
 export function isAboutMsg(msg: Msg<any>): msg is Msg<AboutContent> {
   return hasContent(msg) && msg.value.content.type === 'about';
 }
