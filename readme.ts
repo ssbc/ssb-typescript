@@ -55,11 +55,13 @@ export type About = {
   following?: true | null | false;
 };
 
+export type Privatable<T> = T & {recps?: Array<FeedId>};
+
 export type Content =
-  | PostContent
-  | ContactContent
-  | VoteContent
-  | AboutContent
+  | Privatable<PostContent>
+  | Privatable<ContactContent>
+  | Privatable<VoteContent>
+  | Privatable<AboutContent>
   | null;
 
 export type PostContent = {
