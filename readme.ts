@@ -40,19 +40,12 @@ export type Msg<C = Content> = {
   timestamp: number;
 };
 
-export type About = {
-  name: string;
-  description?: string;
-  color?: string;
-  imageUrl?: string;
-  id?: FeedId;
-
-  /**
-   * true means following
-   * null means not-following
-   * false means blocked
-   */
-  following?: true | null | false;
+export type UnboxedMsg<C = Content> = Msg<C> & {
+  value: Msg<C>['value'] & {
+    cyphertext: string;
+    private: true;
+    unbox: string;
+  };
 };
 
 export type Privatable<T> = T & {recps?: Array<FeedId>};
@@ -101,6 +94,21 @@ export type VoteContent = {
     value: number;
     expression: string;
   };
+};
+
+export type About = {
+  name: string;
+  description?: string;
+  color?: string;
+  imageUrl?: string;
+  id?: FeedId;
+
+  /**
+   * true means following
+   * null means not-following
+   * false means blocked
+   */
+  following?: true | null | false;
 };
 
 export type PeerMetadata = {
