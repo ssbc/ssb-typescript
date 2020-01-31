@@ -4,44 +4,52 @@ import {
   AboutContent,
   ContactContent,
   VoteContent,
+  UnboxedMsg,
+  MsgId,
 } from './readme';
 
 export function isMsg(msg: any): msg is Msg<any> {
   return msg && msg.key && msg.value && typeof msg.value === 'object';
 }
 
-export function hasContent(msg: Msg): boolean {
-  return !!(msg && msg.value && msg.value.content);
+export function isRootMsg(msg: Msg<any>): boolean {
+  return !msg?.value?.content?.root;
+}
+
+export function isReplyMsgToRoot(rootKey: MsgId) {
+  return (msg: Msg<{root?: MsgId}>) => msg?.value?.content?.root === rootKey;
 }
 
 export function isPostMsg(msg: Msg<any>): msg is Msg<PostContent> {
-  return hasContent(msg) && msg.value.content.type === 'post';
+  return msg?.value?.content?.type === 'post';
 }
 
 export function isRootPostMsg(msg: Msg<any>): msg is Msg<PostContent> {
-  return isPostMsg(msg) && !msg.value.content.root;
+  return isPostMsg(msg) && !msg?.value?.content?.root;
 }
 
 export function isReplyPostMsg(msg: Msg<any>): msg is Msg<PostContent> {
-  return isPostMsg(msg) && !!msg.value.content.root;
+  return isPostMsg(msg) && !!msg?.value?.content?.root;
 }
 
 export function isAboutMsg(msg: Msg<any>): msg is Msg<AboutContent> {
-  return hasContent(msg) && msg.value.content.type === 'about';
+  return msg?.value?.content?.type === 'about';
 }
 
 export function isContactMsg(msg: Msg<any>): msg is Msg<ContactContent> {
-  return hasContent(msg) && msg.value.content.type === 'contact';
+  return msg?.value?.content?.type === 'contact';
 }
 
 export function isVoteMsg(msg: Msg<any>): msg is Msg<VoteContent> {
-  return hasContent(msg) && msg.value.content.type === 'vote';
+  return msg?.value?.content?.type === 'vote';
 }
 
-export function isPrivate(msg: Msg<any>): boolean {
-  return hasContent(msg) && typeof msg.value.content === 'string';
+export function isPrivate(msg: Msg<any> | UnboxedMsg): boolean {
+  if ((msg as UnboxedMsg).value.private) return true;
+  return typeof msg?.value?.content === 'string';
 }
 
-export function isPublic(msg: Msg<any>): boolean {
-  return hasContent(msg) && typeof msg.value.content === 'object';
+export function isPublic(msg: Msg<any> | UnboxedMsg): boolean {
+  if ((msg as UnboxedMsg).value.private) return false;
+  return typeof msg?.value?.content !== 'string';
 }
