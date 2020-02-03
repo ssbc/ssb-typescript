@@ -46,10 +46,12 @@ export function isVoteMsg(msg: Msg<any>): msg is Msg<VoteContent> {
 
 export function isPrivate(msg: Msg<any> | UnboxedMsg): boolean {
   if ((msg as UnboxedMsg).value.private) return true;
+  if (Array.isArray(msg.value.content?.recps)) return true;
   return typeof msg?.value?.content === 'string';
 }
 
 export function isPublic(msg: Msg<any> | UnboxedMsg): boolean {
   if ((msg as UnboxedMsg).value.private) return false;
+  if (Array.isArray(msg.value.content?.recps)) return false;
   return typeof msg?.value?.content !== 'string';
 }
