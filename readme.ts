@@ -97,7 +97,7 @@ export type VoteContent = {
 };
 
 export type About = {
-  name: string;
+  name?: string;
   description?: string;
   color?: string;
   imageUrl?: string;
