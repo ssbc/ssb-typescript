@@ -6,6 +6,7 @@ import {
   VoteContent,
   UnboxedMsg,
   MsgId,
+  MsgInThread,
 } from './readme';
 
 export function isMsg(msg: any): msg is Msg<any> {
@@ -17,7 +18,14 @@ export function isRootMsg(msg: Msg<any>): boolean {
 }
 
 export function isReplyMsgToRoot(rootKey: MsgId) {
-  return (msg: Msg<{root?: MsgId}>) => msg?.value?.content?.root === rootKey;
+  return (msg: MsgInThread) => msg?.value?.content?.root === rootKey;
+}
+
+export function isIndirectReplyMsgToRoot(rootKey: MsgId) {
+  return (msg: MsgInThread) =>
+    msg?.value?.content?.root === rootKey ||
+    msg?.value?.content?.branch === rootKey ||
+    msg?.value?.content?.fork === rootKey;
 }
 
 export function isPostMsg(msg: Msg<any>): msg is Msg<PostContent> {

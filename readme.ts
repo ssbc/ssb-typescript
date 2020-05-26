@@ -40,6 +40,12 @@ export type Msg<C = Content> = {
   timestamp: number;
 };
 
+export type MsgInThread = Msg<{
+  root?: MsgId;
+  fork?: MsgId;
+  branch?: MsgId;
+}>
+
 export type UnboxedMsg<C = Content> = Msg<C> & {
   value: Msg<C>['value'] & {
     cyphertext: string;
