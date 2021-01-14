@@ -74,6 +74,7 @@ export type PostContent = {
   mentions?: Array<any>;
   root?: MsgId;
   branch?: MsgId | Array<MsgId>;
+  fork?: MsgId;
   // recps: FeedLinks;
   // mentions: Links;
 };
