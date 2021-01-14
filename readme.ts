@@ -52,6 +52,10 @@ export type UnboxedMsg<C = Content> = Msg<C> & {
     private: true;
     unbox: string;
   };
+  meta?: {
+    private: true;
+    originalContent: string;
+  }
 };
 
 export type Privatable<T> = T & {recps?: Array<FeedId>};
