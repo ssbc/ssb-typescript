@@ -33,7 +33,7 @@ export type Msg<C = Content> = {
     author: FeedId;
     sequence: number;
     timestamp: number;
-    hash: "sha256";
+    hash: 'sha256';
     content: C;
     signature: string;
   };
@@ -47,7 +47,7 @@ export type MsgInThread = Msg<{
 }>;
 
 export type UnboxedMsg<C = Content> = Msg<C> & {
-  value: Msg<C>["value"] & {
+  value: Msg<C>['value'] & {
     cyphertext: string;
     private: true;
     unbox: string;
@@ -68,7 +68,7 @@ export type Content =
   | null;
 
 export type PostContent = {
-  type: "post";
+  type: 'post';
   text: string;
   channel?: string;
 
@@ -84,7 +84,7 @@ export type PostContent = {
 };
 
 export type AboutContent = {
-  type: "about";
+  type: 'about';
   about: FeedId;
   name?: string;
   description?: string;
@@ -92,14 +92,14 @@ export type AboutContent = {
 };
 
 export type ContactContent = {
-  type: "contact";
+  type: 'contact';
   contact?: FeedId;
   following?: boolean;
   blocking?: boolean;
 };
 
 export type VoteContent = {
-  type: "vote";
+  type: 'vote';
   vote: {
     link: MsgId;
     value: number;
@@ -127,11 +127,11 @@ export type PeerMetadata = {
   port: number;
   key: string;
   name?: string;
-  source: "local" | "pub" | "manual";
+  source: 'local' | 'pub' | 'manual';
   announcers?: number;
   duration?: any;
   client: boolean;
-  state: "connecting" | "connected" | "disconnecting" | undefined;
+  state: 'connecting' | 'connected' | 'disconnecting' | undefined;
   stateChange: number;
   ping?: {
     rtt: {
@@ -152,7 +152,7 @@ export type PeerMetadata = {
 };
 
 export type BlogContent = {
-  type: "blog";
+  type: 'blog';
   title: string;
   summary: string;
   channel?: string;
