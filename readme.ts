@@ -33,7 +33,7 @@ export type Msg<C = Content> = {
     author: FeedId;
     sequence: number;
     timestamp: number;
-    hash: 'sha256';
+    hash: "sha256";
     content: C;
     signature: string;
   };
@@ -44,10 +44,10 @@ export type MsgInThread = Msg<{
   root?: MsgId;
   fork?: MsgId;
   branch?: MsgId;
-}>
+}>;
 
 export type UnboxedMsg<C = Content> = Msg<C> & {
-  value: Msg<C>['value'] & {
+  value: Msg<C>["value"] & {
     cyphertext: string;
     private: true;
     unbox: string;
@@ -55,10 +55,10 @@ export type UnboxedMsg<C = Content> = Msg<C> & {
   meta?: {
     private: true;
     originalContent: string;
-  }
+  };
 };
 
-export type Privatable<T> = T & {recps?: Array<FeedId>};
+export type Privatable<T> = T & { recps?: Array<FeedId> };
 
 export type Content =
   | Privatable<PostContent>
@@ -68,7 +68,7 @@ export type Content =
   | null;
 
 export type PostContent = {
-  type: 'post';
+  type: "post";
   text: string;
   channel?: string;
 
@@ -84,7 +84,7 @@ export type PostContent = {
 };
 
 export type AboutContent = {
-  type: 'about';
+  type: "about";
   about: FeedId;
   name?: string;
   description?: string;
@@ -92,14 +92,14 @@ export type AboutContent = {
 };
 
 export type ContactContent = {
-  type: 'contact';
+  type: "contact";
   contact?: FeedId;
   following?: boolean;
   blocking?: boolean;
 };
 
 export type VoteContent = {
-  type: 'vote';
+  type: "vote";
   vote: {
     link: MsgId;
     value: number;
@@ -127,11 +127,11 @@ export type PeerMetadata = {
   port: number;
   key: string;
   name?: string;
-  source: 'local' | 'pub' | 'manual';
+  source: "local" | "pub" | "manual";
   announcers?: number;
   duration?: any;
   client: boolean;
-  state: 'connecting' | 'connected' | 'disconnecting' | undefined;
+  state: "connecting" | "connected" | "disconnecting" | undefined;
   stateChange: number;
   ping?: {
     rtt: {
@@ -149,4 +149,23 @@ export type PeerMetadata = {
       sqsum: number;
     };
   };
+};
+
+export type BlogContent = {
+  type: "blog";
+  title: string;
+  summary: string;
+  channel?: string;
+  thumbnail?: string;
+  blog: string;
+
+  /**
+   * Links
+   */
+  mentions?: Array<any>;
+  root?: MsgId;
+  branch?: MsgId | Array<MsgId>;
+  fork?: MsgId;
+  // recps: FeedLinks;
+  // mentions: Links;
 };
