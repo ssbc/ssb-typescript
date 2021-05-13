@@ -65,6 +65,7 @@ export type Content =
   | Privatable<ContactContent>
   | Privatable<VoteContent>
   | Privatable<AboutContent>
+  | Privatable<BlogContent>
   | null;
 
 export type PostContent = {
