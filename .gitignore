@@ -6,3 +6,4 @@ node_modules
 /utils.js
 /utils.d.ts
 /utils.js.map
+pnpm-lock.yaml

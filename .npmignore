@@ -1,2 +1,8 @@
 node_modules
+.gitignore
 .DS_Store
+package-lock.json
+/pnpm-lock.yaml
+/readme.ts
+/utils.ts
+/tsconfig.json
