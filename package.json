@@ -13,9 +13,11 @@
     "ssb"
   ],
   "scripts": {
-    "prepublish": "tsc"
+    "prepublish": "tsc",
+    "test": "tsc --noEmit test.ts"
   },
   "devDependencies": {
+    "tsd":"~0.15.1",
     "ts-node": "^9.1.1",
     "typescript": "~4.2.2"
   }
