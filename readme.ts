@@ -66,6 +66,7 @@ export type Content =
   | Privatable<VoteContent>
   | Privatable<AboutContent>
   | Privatable<BlogContent>
+  | Privatable<AliasContent>
   | null;
 
 export type PostContent = {
@@ -107,6 +108,14 @@ export type VoteContent = {
     expression: string;
   };
 };
+
+export type AliasContent = {
+  type: 'room/alias';
+  action?: 'registered' | 'revoked';
+  alias?: string;
+  aliasURL?: string;
+  room?: FeedId;
+}
 
 export type About = {
   name?: string;
