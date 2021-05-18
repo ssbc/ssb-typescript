@@ -109,6 +109,23 @@ export type VoteContent = {
   };
 };
 
+export type BlogContent = {
+  type: 'blog';
+  title: string;
+  summary: string;
+  channel?: string;
+  thumbnail?: string;
+  blog: string;
+
+  /**
+   * Links
+   */
+  mentions?: Array<any>;
+  root?: MsgId;
+  branch?: MsgId | Array<MsgId>;
+  fork?: MsgId;
+};
+
 export type AliasContent = {
   type: 'room/alias';
   action?: 'registered' | 'revoked';
@@ -159,23 +176,4 @@ export type PeerMetadata = {
       sqsum: number;
     };
   };
-};
-
-export type BlogContent = {
-  type: 'blog';
-  title: string;
-  summary: string;
-  channel?: string;
-  thumbnail?: string;
-  blog: string;
-
-  /**
-   * Links
-   */
-  mentions?: Array<any>;
-  root?: MsgId;
-  branch?: MsgId | Array<MsgId>;
-  fork?: MsgId;
-  // recps: FeedLinks;
-  // mentions: Links;
 };
