@@ -26,7 +26,7 @@ export type MsgId = string;
  */
 export type BlobId = string;
 
-export type Msg<C = Content> = {
+export interface Msg<C = Content> {
   key: MsgId;
   value: {
     previous: MsgId;
@@ -38,7 +38,7 @@ export type Msg<C = Content> = {
     signature: string;
   };
   timestamp: number;
-};
+}
 
 export type MsgInThread = Msg<{
   root?: MsgId;
@@ -46,7 +46,7 @@ export type MsgInThread = Msg<{
   branch?: MsgId;
 }>;
 
-export type UnboxedMsg<C = Content> = Msg<C> & {
+export interface UnboxedMsg<C = Content> extends Msg<C> {
   value: Msg<C>['value'] & {
     cyphertext: string;
     private: true;
@@ -56,9 +56,9 @@ export type UnboxedMsg<C = Content> = Msg<C> & {
     private: true;
     originalContent: string;
   };
-};
+}
 
-export type Privatable<T> = T & { recps?: Array<FeedId> };
+export type Privatable<T> = T & {recps?: Array<FeedId>};
 
 export type Content =
   | Privatable<PostContent>
@@ -69,7 +69,7 @@ export type Content =
   | Privatable<AliasContent>
   | null;
 
-export type PostContent = {
+export interface PostContent {
   type: 'post';
   text: string;
   channel?: string;
@@ -83,33 +83,33 @@ export type PostContent = {
   fork?: MsgId;
   // recps: FeedLinks;
   // mentions: Links;
-};
+}
 
-export type AboutContent = {
+export interface AboutContent {
   type: 'about';
   about: FeedId;
   name?: string;
   description?: string;
   image?: string;
-};
+}
 
-export type ContactContent = {
+export interface ContactContent {
   type: 'contact';
   contact?: FeedId;
   following?: boolean;
   blocking?: boolean;
-};
+}
 
-export type VoteContent = {
+export interface VoteContent {
   type: 'vote';
   vote: {
     link: MsgId;
     value: number;
     expression: string;
   };
-};
+}
 
-export type BlogContent = {
+export interface BlogContent {
   type: 'blog';
   title: string;
   summary: string;
@@ -124,9 +124,9 @@ export type BlogContent = {
   root?: MsgId;
   branch?: MsgId | Array<MsgId>;
   fork?: MsgId;
-};
+}
 
-export type AliasContent = {
+export interface AliasContent {
   type: 'room/alias';
   action?: 'registered' | 'revoked';
   alias?: string;
@@ -134,7 +134,7 @@ export type AliasContent = {
   room?: FeedId;
 }
 
-export type About = {
+export interface About {
   name?: string;
   description?: string;
   color?: string;
@@ -147,9 +147,9 @@ export type About = {
    * false means blocked
    */
   following?: true | null | false;
-};
+}
 
-export type PeerMetadata = {
+export interface PeerMetadata {
   host: string;
   port: number;
   key: string;
@@ -176,4 +176,4 @@ export type PeerMetadata = {
       sqsum: number;
     };
   };
-};
+}
