@@ -67,6 +67,7 @@ export type Content =
   | Privatable<AboutContent>
   | Privatable<BlogContent>
   | Privatable<AliasContent>
+  | Privatable<GatheringContent>
   | null;
 
 export interface PostContent {
@@ -132,6 +133,12 @@ export interface AliasContent {
   alias?: string;
   aliasURL?: string;
   room?: FeedId;
+}
+
+export interface GatheringContent {
+  type: 'gathering',
+  progenitor?: MsgId         // (optional) the thing that spawned this gathering
+  mentions?: Array<FeedId>,  // (optional) people to notify
 }
 
 export interface About {
