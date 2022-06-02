@@ -9,6 +9,7 @@ import {
   MsgId,
   MsgInThread,
   AttendeeContent,
+  GatheringContent,
 } from './readme';
 
 export function isMsg(msg: any): msg is Msg<any> {
@@ -52,6 +53,10 @@ export function isContactMsg(msg: Msg<any>): msg is Msg<ContactContent> {
 
 export function isVoteMsg(msg: Msg<any>): msg is Msg<VoteContent> {
   return msg?.value?.content?.type === 'vote';
+}
+
+export function isGatheringMsg(msg: Msg<any>): msg is Msg<GatheringContent> {
+  return msg?.value?.content?.type === 'gathering';
 }
 
 export function isAttendeeMsg(msg: Msg<any>): msg is Msg<AttendeeContent> {
