@@ -68,6 +68,8 @@ export type Content =
   | Privatable<BlogContent>
   | Privatable<AliasContent>
   | Privatable<GatheringContent>
+  | Privatable<GatheringUpdateContent>
+  | Privatable<AttendeeContent>
   | null;
 
 export interface PostContent {
@@ -136,9 +138,58 @@ export interface AliasContent {
 }
 
 export interface GatheringContent {
-  type: 'gathering',
-  progenitor?: MsgId         // (optional) the thing that spawned this gathering
-  mentions?: Array<FeedId>,  // (optional) people to notify
+  type: 'gathering';
+
+  /**
+   * The message that spawned this gathering
+   */
+  progenitor?: MsgId;
+
+  /**
+   * People to notify
+   */
+  mentions?: Array<FeedId>;
+}
+
+export interface GatheringUpdateContent {
+  type: 'about';
+
+  /**
+   * SHOULD point to a `type: 'gathering'` message.
+   */
+  about: MsgId;
+  title?: string;
+  description?: string;
+  location?: string;
+  startDateTime?: {
+    epoch?: number;
+    ts?: string;
+    bias?: number;
+    silent?: boolean;
+  };
+  image?: {
+    link: BlobId;
+    name?: string;
+    size?: number;
+
+    /**
+     * mimetype
+     */
+    type?: string;
+  };
+}
+
+export interface AttendeeContent {
+  type: 'about';
+
+  /**
+   * SHOULD point to a `type: 'gathering'` message.
+   */
+  about: MsgId;
+  attendee: {
+    link: FeedId;
+    remove?: true;
+  };
 }
 
 export interface About {

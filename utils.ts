@@ -8,6 +8,7 @@ import {
   UnboxedMsg,
   MsgId,
   MsgInThread,
+  AttendeeContent,
 } from './readme';
 
 export function isMsg(msg: any): msg is Msg<any> {
@@ -34,11 +35,11 @@ export function isPostMsg(msg: Msg<any>): msg is Msg<PostContent> {
 }
 
 export function isRootPostMsg(msg: Msg<any>): msg is Msg<PostContent> {
-  return isPostMsg(msg) && !msg?.value?.content?.root;
+  return isPostMsg(msg) && !msg.value.content.root;
 }
 
 export function isReplyPostMsg(msg: Msg<any>): msg is Msg<PostContent> {
-  return isPostMsg(msg) && !!msg?.value?.content?.root;
+  return isPostMsg(msg) && !!msg.value.content.root;
 }
 
 export function isAboutMsg(msg: Msg<any>): msg is Msg<AboutContent> {
@@ -51,6 +52,15 @@ export function isContactMsg(msg: Msg<any>): msg is Msg<ContactContent> {
 
 export function isVoteMsg(msg: Msg<any>): msg is Msg<VoteContent> {
   return msg?.value?.content?.type === 'vote';
+}
+
+export function isAttendeeMsg(msg: Msg<any>): msg is Msg<AttendeeContent> {
+  return (
+    msg?.value?.content?.type === 'about' &&
+    msg.value.content.about &&
+    msg.value.content.attendee &&
+    msg.value.content.attendee.link
+  );
 }
 
 export function isPrivate(msg: Msg<any> | UnboxedMsg): boolean {
