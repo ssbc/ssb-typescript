@@ -163,7 +163,7 @@ export interface GatheringUpdateContent {
   location?: string;
   startDateTime?: {
     epoch?: number;
-    ts?: string;
+    tz?: string;
     bias?: number;
     silent?: boolean;
   };
