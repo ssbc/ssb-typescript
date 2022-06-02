@@ -1,6 +1,6 @@
 {
   "name": "ssb-typescript",
-  "version": "2.7.1",
+  "version": "2.8.0",
   "description": "TypeScript type definitions for Secure Scuttlebutt",
   "repository": {
     "type": "git",
